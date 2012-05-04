@@ -1,0 +1,102 @@
+#!/usr/bin/env node
+// -*- js -*-
+
+var opt = require('optimist');
+var fs = require('fs');
+var wsd = require('../lib/wsd');
+
+var argv = opt
+    .usage('Generate a diagram with websequencediagrams.com')
+    .boolean('h')
+    .alias('h', 'help')
+    .describe('h', 'Show help')
+    .string('f')
+    .alias('f', 'format')
+    .describe('f', 'Format for output (one of [png, pdf, svg])')
+    .default('f', 'png')
+    .string('o')
+    .alias('o', 'output')
+    .describe('o', 'Output file (defaults to wsd.[png, pdf, svg])')
+    .string('s')
+    .alias('s', 'style')
+    .describe('s', 'Output style (one of: [' + wsd.styles.join(", ") + '])')
+    .wrap(80)
+    .argv;
+
+if (argv.h) {
+    opt.showHelp();
+    process.exit(64);
+}
+
+function bcat(bufs) {
+    if (!Array.isArray(bufs)) {
+        bufs = arguments;
+    }
+    switch (bufs.length) {
+        case 0:
+            return new Buffer(0);
+        case 1:
+            return bufs[0];
+        default:
+            break;
+    }
+    var len = bufs.reduce(function(prev,cur) {
+        return prev + cur.length;
+    }, 0);
+    var buf = new Buffer(len);
+    bufs.reduce(function(prev,cur) {
+        cur.copy(buf, prev);
+        return prev + cur.length;
+    }, 0);
+    return buf
+}
+
+var files = argv._;
+if (files.length === 0) {
+    files = ['-'];
+}
+
+files.forEach(function(f) {
+    var stream;
+    var bufs = [];
+    if (f === '-') {
+        stream = process.stdin;
+        process.stdin.resume();
+    } else {
+        stream = fs.createReadStream(f);
+    }
+    stream.on('error', function(er) {
+        console.log(er);
+    });
+    stream.on('data', function(data) {
+        bufs.push(data);
+    });
+    stream.on('end', function() {
+        wsd.diagram(bcat(bufs), argv.s, argv.f, function(er, buf, typ) {
+            if (er) {
+                console.log(er);
+                return;
+            }
+            var output = argv.o;
+            if (!output) {
+                switch (typ) {
+                    case 'image/png':
+                        output = 'wsd.png';
+                        break;
+                    case 'application/pdf':
+                        output = 'wsd.pdf';
+                        break;
+                    case 'image/svg+xml':
+                        output = 'wsd.svg';
+                        break;
+                    default:
+                        console.error("Unknown file MIME type: " + typ);
+                        return;
+                }
+            }
+
+            fs.writeFile(output, buf);
+        });
+
+    });
+});

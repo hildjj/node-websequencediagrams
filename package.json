@@ -1,0 +1,24 @@
+{
+  "author": "Joe Hildebrand (https://twitter.com/#!/hildjj)",
+  "name": "websequencediagrams",
+  "description": "Interface to websequencediagrams.com",
+  "version": "0.0.0",
+  "homepage": "https://github.com/hildjj/node-websequencediagrams",
+  "repository": {
+    "type" : "git",
+    "url": "git://github.com/hildjj/node-websequencediagrams"
+  },
+  "dependencies": {
+    "optimist": "~0.3.4"
+  },
+  "directories": {
+    "bin": "bin",
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "keywords": ["uml", "sequence diagram", "sequence", "diagram", "websequencediagrams", "websequencediagrams.com"]
+}
