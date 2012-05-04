@@ -15,6 +15,7 @@
     "bin": "bin",
     "lib": "lib"
   },
+  "main": "lib/wsd",
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {

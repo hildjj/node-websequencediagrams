@@ -2,7 +2,7 @@ Call the WebSequenceDiagram.com API.
 
 Example:
 
-    var wsd = require('wsd');
+    var wsd = require('websequencediagrams');
     var fs = require('fs');
     wsd.diagram("Alice->Bob: message", "modern-blue", "png", function(er, buf, typ) {
     	if (er) {
