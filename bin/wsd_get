@@ -2,7 +2,7 @@
 // -*- js -*-
 
 var opt = require('optimist');
-var fs = require('fs');
+var fs  = require('fs');
 var wsd = require('../lib/wsd');
 
 var argv = opt
@@ -48,7 +48,7 @@ function bcat(bufs) {
         cur.copy(buf, prev);
         return prev + cur.length;
     }, 0);
-    return buf
+    return buf;
 }
 
 var files = argv._;
