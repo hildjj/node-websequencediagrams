@@ -28,3 +28,7 @@ The callback takes an error, a Buffer, and a MIME type
 
 ### License
 This code is licensed under the [Apache Software License, 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+[![Build Status](https://travis-ci.org/hildjj/node-websequencediagrams.svg?branch=master)](https://travis-ci.org/hildjj/node-websequencediagrams)
+
+[![Coverage Status](https://coveralls.io/repos/github/hildjj/node-websequencediagrams/badge.svg?branch=master)](https://coveralls.io/github/hildjj/node-websequencediagrams?branch=master)
