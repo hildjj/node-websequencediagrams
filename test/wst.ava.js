@@ -13,8 +13,8 @@ Bob->Alice: Authentication Response
 
 const nock = require('nock');
 nock.back.fixtures = __dirname + '/fixtures';
-nock.back.setMode('record');
-//nock.back.setMode('lockdown');
+//nock.back.setMode('record');
+nock.back.setMode('lockdown');
 
 function nb(t, cb) {
   nock.back(t.title.replace(/\s+/g, '-') + '.json', cb);
