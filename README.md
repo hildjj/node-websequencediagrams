@@ -1,5 +1,18 @@
 Call the WebSequenceDiagram.com API.
 
+## Command Line
+
+    wsd_get [options] [input file...]
+		
+    Options:
+        -h, --help    Show help
+        -f, --format  Format for output (one of [png, pdf, svg]) [default: "png"]
+        -o, --output  Output file (defaults to wsd.[png, pdf, svg])
+        -s, --style   Output style (one of: [default, earth, modern-blue, mscgen,
+                      omegapple, qsd, rose, roundgreen, napkin])
+
+## API
+
 Example:
 
     var wsd = require('websequencediagrams');
@@ -30,5 +43,4 @@ The callback takes an error, a Buffer, and a MIME type
 This code is licensed under the [Apache Software License, 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 [![Build Status](https://travis-ci.org/hildjj/node-websequencediagrams.svg?branch=master)](https://travis-ci.org/hildjj/node-websequencediagrams)
-
 [![Coverage Status](https://coveralls.io/repos/github/hildjj/node-websequencediagrams/badge.svg?branch=master)](https://coveralls.io/github/hildjj/node-websequencediagrams?branch=master)
