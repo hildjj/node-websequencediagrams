@@ -2,11 +2,11 @@
   "author": "Joe Hildebrand (https://twitter.com/#!/hildjj)",
   "name": "websequencediagrams",
   "description": "Interface to websequencediagrams.com",
-  "version": "0.0.2",
-  "homepage": "https://github.com/hildjj/node-websequencediagrams",
+  "version": "0.0.3",
+  "homepage": "https://github.com/Onegini/node-websequencediagrams",
   "repository": {
-    "type" : "git",
-    "url": "git://github.com/hildjj/node-websequencediagrams"
+    "type": "git",
+    "url": "git://github.com/Onegini/node-websequencediagrams"
   },
   "dependencies": {
     "optimist": "~0.3.4"
@@ -21,5 +21,13 @@
   "engines": {
     "node": "*"
   },
-  "keywords": ["uml", "sequence diagram", "sequence", "diagram", "websequencediagrams", "websequencediagrams.com"]
+  "license": "Apache-2.0",
+  "keywords": [
+    "uml",
+    "sequence diagram",
+    "sequence",
+    "diagram",
+    "websequencediagrams",
+    "websequencediagrams.com"
+  ]
 }
