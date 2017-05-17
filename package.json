@@ -29,10 +29,14 @@
     "test": "ava",
     "precoveragehtml": "npm run coverage",
     "coverage": "nyc npm test",
-    "coveragehtml": "nyc report -r html"
+    "coveragehtml": "nyc report -r html",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "precoveralls": "npm run coverage",
+    "release": "npm version patch && git push --follow-tags && npm publish"
   },
   "devDependencies": {
     "ava": "^0.19",
+    "coveralls": "^2.13",
     "nock": "^9.0",
     "nyc": "^10.3"
   },
