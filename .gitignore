@@ -1,2 +1,4 @@
 node_modules
 wsd.png
+coverage/
+.nyc_output/

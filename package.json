@@ -1,25 +1,49 @@
 {
-  "author": "Joe Hildebrand (https://twitter.com/#!/hildjj)",
+  "author": "Joe Hildebrand <joe-github@cursive.net>",
   "name": "websequencediagrams",
   "description": "Interface to websequencediagrams.com",
   "version": "0.0.2",
   "homepage": "https://github.com/hildjj/node-websequencediagrams",
   "repository": {
-    "type" : "git",
+    "type": "git",
     "url": "git://github.com/hildjj/node-websequencediagrams"
-  },
-  "dependencies": {
-    "optimist": "~0.3.4"
   },
   "directories": {
     "bin": "bin",
     "lib": "lib"
   },
   "main": "lib/wsd",
-  "devDependencies": {},
-  "optionalDependencies": {},
   "engines": {
-    "node": "*"
+    "node": "6"
   },
-  "keywords": ["uml", "sequence diagram", "sequence", "diagram", "websequencediagrams", "websequencediagrams.com"]
+  "keywords": [
+    "uml",
+    "sequence diagram",
+    "sequence",
+    "diagram",
+    "websequencediagrams",
+    "websequencediagrams.com"
+  ],
+  "license": "MPL-2.0",
+  "scripts": {
+    "test": "ava",
+    "precoveragehtml": "npm run coverage",
+    "coverage": "nyc npm test",
+    "coveragehtml": "nyc report -r html"
+  },
+  "devDependencies": {
+    "ava": "^0.19",
+    "ava-playback": "0.0.10",
+    "nock": "^9.0.13",
+    "nyc": "^10.3.2"
+  },
+  "dependencies": {
+    "optimist": "~0.6"
+  },
+  "ava": {
+    "require": [
+      "ava-playback"
+    ],
+    "playbacks": "test/fixtures/"
+  }
 }

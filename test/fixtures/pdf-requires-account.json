@@ -1,0 +1,14 @@
+[
+    {
+        "scope": "http://www.websequencediagrams.com:80",
+        "method": "POST",
+        "path": "/index.php",
+        "body": "style=default&message=Alice%0A&apiVersion=1&format=pdf",
+        "status": 402,
+        "response": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>API Key Required for PDF</title>\n</head><body>\n<h1>API Key Required for PDF</h1>\n</body></html>",
+        "rawHeaders": [
+            "Content-Length",
+            "167"
+        ]
+    }
+]
