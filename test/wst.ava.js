@@ -39,7 +39,7 @@ test.cb('url', t => {
 
 test.cb('url buffer', t => {
   nb(t, nockDone => {
-    wsd.diagram_url(new Buffer(desc), null, null, (er, u) => {
+    wsd.diagram_url(Buffer.from(desc), null, null, (er, u) => {
       nockDone();
       t.ifError(er);
       t.regex(u, /^http:\/\/www.websequencediagrams.com\/\?png=.+/);
