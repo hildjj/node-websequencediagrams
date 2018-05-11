@@ -9,7 +9,7 @@ Call the WebSequenceDiagram.com API.
         -f, --format  Format for output (one of [png, pdf, svg]) [default: "png"]
         -o, --output  Output file (defaults to wsd.[png, pdf, svg])
         -s, --style   Output style (one of: [default, earth, modern-blue, mscgen,
-                      omegapple, qsd, rose, roundgreen, napkin])
+                      omegapple, qsd, rose, roundgreen, napkin, magazine])
 
 ## API
 
