@@ -4,13 +4,15 @@ Call the WebSequenceDiagram.com API.
 
     wsd_get [options] [input file...]
 		
+    Generate a diagram with websequencediagrams.com
+
     Options:
-        -h, --help    Show help
-        -a, --all     Process all "*.wsd" files in the current directory
-        -f, --format  Format for output (one of [png, pdf, svg]) [default: "png"]
-        -o, --output  Output file (defaults to wsd.[png, pdf, svg])
-        -s, --style   Output style (one of: [default, earth, modern-blue, mscgen,
-                      omegapple, qsd, rose, roundgreen, napkin])
+    -h, --help    Show help
+    -f, --format  Format for output (one of [png, pdf, svg])  [default: "png"]
+    -o, --output  Output file (defaults to wsd.[png, pdf, svg])
+    -s, --style   Output style (one of: [default, earth, modern-blue, mscgen,
+                  omegapple, qsd, rose, roundgreen, napkin, magazine, vs2010,
+                  patent])
 
 ## API
 
