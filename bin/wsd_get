@@ -11,19 +11,21 @@ var argv = opt
     .boolean('h')
     .alias('h', 'help')
     .describe('h', 'Show help')
+    .boolean('a')
+    .alias('a', 'all')
+    .describe('a', 'Convert all files in the current directory')
     .string('f')
     .alias('f', 'format')
     .describe('f', 'Format for output (one of [png, pdf, svg])')
     .default('f', 'png')
     .string('o')
     .alias('o', 'output')
-    .describe('o', 'Output file (defaults to wsd.[png, pdf, svg])')
+    .describe('o', 'Output file (defaults to [filename].[png, pdf, svg])')
     .string('s')
     .alias('s', 'style')
     .describe('s', 'Output style (one of: [' + wsd.styles.join(', ') + '])')
     .wrap(80)
     .argv;
-
 if (argv.h) {
   opt.showHelp();
   process.exit(64);
@@ -31,54 +33,58 @@ if (argv.h) {
 
 var files = argv._;
 if (files.length === 0) {
-  files = ['-'];
+  if (argv.a){
+    files = fs.readdirSync('./')
+  }else{
+    files=['-'];
+  }
 }
-
 files.forEach(function(f) {
   let stream;
   const bufs = [];
   if (f === '-') {
     stream = process.stdin;
     process.stdin.resume();
-  } else {
+  } 
+  if (f.endsWith('.wsd')) {
     stream = fs.createReadStream(f);
-  }
-  stream.on('error', function(er) {
-    console.log(er);
-  });
-  stream.on('data', function(data) {
-    bufs.push(data);
-  });
-  stream.on('end', function() {
-    wsd.diagram(Buffer.concat(bufs), argv.s, argv.f, (er, buf, typ) => {
-      if (er) {
-        console.error(er.message || er);
-        process.exit(1);
-      }
-      var output = argv.o;
-      if (!output) {
-        switch (typ) {
-          case 'image/png':
-            output = 'wsd.png';
-            break;
-          case 'application/pdf':
-            output = 'wsd.pdf';
-            break;
-          case 'image/svg+xml':
-            output = 'wsd.svg';
-            break;
-          default:
-            console.error('Unknown file MIME type: ' + typ);
-            return;
-        }
-      }
-
-      fs.writeFile(output, buf, (er) => {
+    stream.on('error', function(er) {
+      console.error(`error opening file ${f}: ${er.message || er}`);
+    });
+    stream.on('data', function(data) {
+      bufs.push(data);
+    });
+    stream.on('end', function() {
+      wsd.diagram(Buffer.concat(bufs), argv.s, argv.f, (er, buf, typ) => {
         if (er) {
-          console.error(er.message || er);
+          console.error(`error processing ${f}: ${er.message || er}`);
           process.exit(1);
         }
+        var output = argv.o;
+        if (!output) {
+          switch (typ) {
+            case 'image/png':
+              output = f.replace('\.wsd','.png');
+              break;
+            case 'application/pdf':
+              output = f.replace('\.wsd','.pdf');
+              break;
+            case 'image/svg+xml':
+              output = f.replace('\.wsd','.svg');
+              break;
+            default:
+              console.error('Unknown file MIME type: ' + typ);
+              return;
+          }
+        }
+
+        fs.writeFile(output, buf, (er) => {
+          if (er) {
+            console.error(er.message || er);
+            process.exit(1);
+          }
+       });
       });
-    });
-  });
+    })
+  ;}
 });
