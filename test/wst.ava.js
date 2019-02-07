@@ -30,7 +30,7 @@ test.cb('url', t => {
   nb(t, nockDone => {
     wsd.diagram_url(desc, 'default', 'png', (er, u) => {
       nockDone();
-      t.ifError(er);
+      t.falsy(er);
       t.regex(u, /^http:\/\/www.websequencediagrams.com\/\?png=.+/);
       t.end();
     });
@@ -41,7 +41,7 @@ test.cb('url buffer', t => {
   nb(t, nockDone => {
     wsd.diagram_url(Buffer.from(desc), null, null, (er, u) => {
       nockDone();
-      t.ifError(er);
+      t.falsy(er);
       t.regex(u, /^http:\/\/www.websequencediagrams.com\/\?png=.+/);
       t.end();
     });
@@ -84,7 +84,7 @@ test.serial.cb('diagram', t => {
   nb(t, nockDone => {
     wsd.diagram(desc, null, null, (er, buf, typ) => {
       nockDone();
-      t.ifError(er);
+      t.falsy(er);
       t.truthy(Buffer.isBuffer(buf));
       t.is(typ, 'image/png');
       t.end();
