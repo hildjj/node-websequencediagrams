@@ -1,90 +1,59 @@
 #!/usr/bin/env node
-// -*- js -*-
-'use strict';
+'use strict'
 
-var opt = require('optimist');
-var fs  = require('fs');
-var wsd = require('../lib/wsd');
+const opt = require('optimist')
+const wsd = require('../lib/wsd')
+const FileStream = require('../lib/fileStream')
+const fs = require('fs')
+const util = require('util')
+const writeFile = util.promisify(fs.writeFile)
 
-var argv = opt
-    .usage('Generate a diagram with websequencediagrams.com')
-    .boolean('h')
-    .alias('h', 'help')
-    .describe('h', 'Show help')
-    .boolean('a')
-    .alias('a', 'all')
-    .describe('a', 'Convert all files in the current directory')
-    .string('f')
-    .alias('f', 'format')
-    .describe('f', 'Format for output (one of [png, pdf, svg])')
-    .default('f', 'png')
-    .string('o')
-    .alias('o', 'output')
-    .describe('o', 'Output file (defaults to [filename].[png, pdf, svg])')
-    .string('s')
-    .alias('s', 'style')
-    .describe('s', 'Output style (one of: [' + wsd.styles.join(', ') + '])')
-    .wrap(80)
-    .argv;
+const argv = opt
+  .usage('Generate a diagram with websequencediagrams.com')
+  .boolean('h')
+  .alias('h', 'help')
+  .describe('h', 'Show help')
+  .boolean('a')
+  .string('f')
+  .alias('f', 'format')
+  .describe('f', 'Format for output (one of [png, pdf, svg])')
+  .default('f', 'png')
+  .string('o')
+  .alias('o', 'output')
+  .describe('o', 'Output file (defaults to [filename].[format])')
+  .string('s')
+  .alias('s', 'style')
+  .describe('s', 'Output style (one of: [' + wsd.styles.join(', ') + '])')
+  .wrap(80)
+  .argv
 if (argv.h) {
-  opt.showHelp();
-  process.exit(64);
+  opt.showHelp()
+  process.exit(64)
 }
 
-var files = argv._;
-if (files.length === 0) {
-  if (argv.a){
-    files = fs.readdirSync('./')
-  }else{
-    files=['-'];
-  }
-}
-files.forEach(function(f) {
-  let stream;
-  const bufs = [];
-  if (f === '-') {
-    stream = process.stdin;
-    process.stdin.resume();
-  } 
-  if (f.endsWith('.wsd')) {
-    stream = fs.createReadStream(f);
-    stream.on('error', function(er) {
-      console.error(`error opening file ${f}: ${er.message || er}`);
-    });
-    stream.on('data', function(data) {
-      bufs.push(data);
-    });
-    stream.on('end', function() {
-      wsd.diagram(Buffer.concat(bufs), argv.s, argv.f, (er, buf, typ) => {
-        if (er) {
-          console.error(`error processing ${f}: ${er.message || er}`);
-          process.exit(1);
-        }
-        var output = argv.o;
-        if (!output) {
-          switch (typ) {
-            case 'image/png':
-              output = f.replace('\.wsd','.png');
-              break;
-            case 'application/pdf':
-              output = f.replace('\.wsd','.pdf');
-              break;
-            case 'image/svg+xml':
-              output = f.replace('\.wsd','.svg');
-              break;
-            default:
-              console.error('Unknown file MIME type: ' + typ);
-              return;
-          }
-        }
+const files = argv._.length ? argv._ : ['-']
+FileStream.createAll(files)
+  .then(async streams => {
+    for (const s of streams) {
+      const inp = await s.read()
+      const [buf, typ] = await wsd.diagram(inp, argv.s, argv.f)
 
-        fs.writeFile(output, buf, (er) => {
-          if (er) {
-            console.error(er.message || er);
-            process.exit(1);
-          }
-       });
-      });
-    })
-  ;}
-});
+      let output = argv.o
+      if (!output) {
+        const ftyp = {
+          'image/png': '.png',
+          'application/pdf': '.pdf',
+          'image/svg+xml': '.xml'
+        }[typ]
+        if (!ftyp) {
+          throw new Error(`Unknown file MIME type: "${typ}"`)
+        }
+        output = s.name.replace(/\.wsd$/, ftyp)
+      }
+      await writeFile(output, buf)
+    }
+  })
+  .catch(er => {
+    console.error(er)
+    process.exit(1)
+  })

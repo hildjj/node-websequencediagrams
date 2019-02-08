@@ -1,4 +1,4 @@
 node_modules
-wsd.png
+*.png
 coverage/
 .nyc_output/
