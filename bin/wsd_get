@@ -25,6 +25,10 @@ const {argv} = opt
   .string('s')
   .alias('s', 'style')
   .describe('s', `Output style (one of: [${wsd.styles.join(', ')}])`)
+  .string('k')
+  .alias('k', 'key')
+  .describe('k', 'WebSequenceDiagrams API key.  Key can also be specified with WSD_APIKEY environment variable.  Requires premium account, see https://www.websequencediagrams.com/order.html')
+  .default('k', process.env.WSD_APIKEY)
   .wrap(80)
 
 if (argv.h) {
@@ -37,7 +41,7 @@ FileStream.createAll(files)
   .then(async streams => {
     for (const s of streams) {
       const inp = await s.read()
-      const [buf, typ] = await wsd.diagram(inp, argv.s, argv.f)
+      const [buf, typ] = await wsd.diagram(inp, argv.s, argv.f, argv.k)
 
       let output = argv.o
       if (!output) {
