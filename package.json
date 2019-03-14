@@ -58,5 +58,8 @@
     "envs": [
       "node"
     ]
-  }
+  },
+  "contributors": [
+    "Ed Crump <ed.crump@gmail.com> (https://github.com/icedawn)"
+  ]
 }
