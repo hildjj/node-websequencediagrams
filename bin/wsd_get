@@ -27,7 +27,7 @@ const {argv} = opt
   .describe('s', `Output style (one of: [${wsd.styles.join(', ')}])`)
   .string('k')
   .alias('k', 'key')
-  .describe('k', 'WebSequenceDiagrams API key.  Key can also be specified with WSD_APIKEY environment variable.  Requires premium account, see https://www.websequencediagrams.com/order.html')
+  .describe('k', 'WebSequenceDiagrams API key.  Key can also be specified with the WSD_APIKEY environment variable.  Requires a premium account.  See https://www.websequencediagrams.com/order.html')
   .default('k', process.env.WSD_APIKEY)
   .wrap(80)
 
