@@ -13,6 +13,9 @@ Call the WebSequenceDiagram.com API.
     -s, --style   Output style (one of: [default, earth, modern-blue, mscgen,
                   omegapple, qsd, rose, roundgreen, napkin, magazine, vs2010,
                   patent])
+    -k, --key     WebSequenceDiagrams API key.  Key can also be specified with
+                  the WSD_APIKEY environment variable.  Requires a premium
+                  account.  See https://www.websequencediagrams.com/order.html
 
 ## API
 
