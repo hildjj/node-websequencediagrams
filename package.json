@@ -49,14 +49,9 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.1",
-    "optimist": "~0.6"
+    "yargs": "^17.1.0"
   },
-  "standard": {
-    "ignore": [
-      "docs/"
-    ],
-    "envs": [
-      "node"
-    ]
-  }
+  "contributors": [
+    "Ed Crump <ed.crump@gmail.com> (https://github.com/icedawn)"
+  ]
 }

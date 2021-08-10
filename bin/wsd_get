@@ -2,42 +2,62 @@
 /* eslint-disable node/shebang */
 'use strict'
 
-const opt = require('optimist')
+const yargs = require('yargs')
 const wsd = require('../lib/wsd')
 const FileStream = require('../lib/fileStream')
 const fs = require('fs')
 const util = require('util')
 const writeFile = util.promisify(fs.writeFile)
 
-const {argv} = opt
-  .usage('Generate a diagram with websequencediagrams.com')
-  .boolean('h')
-  .alias('h', 'help')
-  .describe('h', 'Show help')
-  .boolean('a')
-  .string('f')
-  .alias('f', 'format')
-  .describe('f', 'Format for output (one of [png, pdf, svg])')
-  .default('f', 'png')
-  .string('o')
-  .alias('o', 'output')
-  .describe('o', 'Output file (defaults to [filename].[format])')
-  .string('s')
-  .alias('s', 'style')
-  .describe('s', `Output style (one of: [${wsd.styles.join(', ')}])`)
-  .wrap(80)
+const {argv} = yargs
+  .usage('$0 [files...]', 'Generate a diagram with websequencediagrams.com')
+  .env('WSD')
+  .options({
+    format: {
+      alias: 'f',
+      desc: 'Format for output',
+      choices: ['png', 'pdf', 'svg'],
+      default: 'png',
+    },
+    output: {
+      alias: 'o',
+      desc: 'Output file (defaults to [filename].[format])',
+      type: 'string',
+    },
+    style: {
+      alias: 's',
+      desc: 'Output style',
+      choices: wsd.styles,
+      default: 'default',
+    },
+    key: {
+      alias: 'k',
+      desc: 'WebSequenceDiagrams API key',
+      type: 'string',
+    },
+    verbose: {
+      desc: 'Verbose output',
+      type: 'boolean',
+    },
+  })
+  .epilog(`Any of the options may be specified with an environment variable,\
+prefixing the uppercase option name with "WSD_".  For example:
 
-if (argv.h) {
-  opt.showHelp()
-  process.exit(64)
+    WSD_KEY=1234 $0 example.wsd
+`)
+  .alias('h', 'help')
+  .help()
+
+if (argv.verbose) {
+  console.error('Parsed arguments:', argv)
 }
 
-const files = argv._.length ? argv._ : ['-']
+const files = (argv.files && argv.files.length) ? argv.files : ['-']
 FileStream.createAll(files)
   .then(async streams => {
     for (const s of streams) {
       const inp = await s.read()
-      const [buf, typ] = await wsd.diagram(inp, argv.s, argv.f)
+      const [buf, typ] = await wsd.diagram(inp, argv.s, argv.f, argv.k)
 
       let output = argv.o
       if (!output) {
@@ -49,7 +69,12 @@ FileStream.createAll(files)
         if (!ftyp) {
           throw new Error(`Unknown file MIME type: "${typ}"`)
         }
-        output = s.name.replace(/\.wsd$/, ftyp)
+        if (s.name === '-') {
+          process.stdout.write(buf)
+          continue
+        } else {
+          output = s.name.replace(/\.wsd$/, ftyp)
+        }
       }
       await writeFile(output, buf)
     }
