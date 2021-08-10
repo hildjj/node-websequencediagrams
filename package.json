@@ -2,7 +2,7 @@
   "author": "Joe Hildebrand <joe-github@cursive.net>",
   "name": "websequencediagrams",
   "description": "Interface to websequencediagrams.com",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "homepage": "https://github.com/hildjj/node-websequencediagrams",
   "repository": {
     "type": "git",
