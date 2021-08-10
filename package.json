@@ -27,7 +27,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "ava",
-    "lint": "eslint . --ext js --ext cjs --ext mjs --ext md",
+    "lint": "eslint . --ext js --ext cjs --ext mjs --ext md bin/*",
     "coverage": "nyc -r lcov npm test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "precoveralls": "npm run coverage",

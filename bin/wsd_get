@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable node/shebang */
 'use strict'
 
 const opt = require('optimist')
@@ -8,7 +9,7 @@ const fs = require('fs')
 const util = require('util')
 const writeFile = util.promisify(fs.writeFile)
 
-const argv = opt
+const {argv} = opt
   .usage('Generate a diagram with websequencediagrams.com')
   .boolean('h')
   .alias('h', 'help')
@@ -23,9 +24,9 @@ const argv = opt
   .describe('o', 'Output file (defaults to [filename].[format])')
   .string('s')
   .alias('s', 'style')
-  .describe('s', 'Output style (one of: [' + wsd.styles.join(', ') + '])')
+  .describe('s', `Output style (one of: [${wsd.styles.join(', ')}])`)
   .wrap(80)
-  .argv
+
 if (argv.h) {
   opt.showHelp()
   process.exit(64)
@@ -43,7 +44,7 @@ FileStream.createAll(files)
         const ftyp = {
           'image/png': '.png',
           'application/pdf': '.pdf',
-          'image/svg+xml': '.xml'
+          'image/svg+xml': '.xml',
         }[typ]
         if (!ftyp) {
           throw new Error(`Unknown file MIME type: "${typ}"`)
