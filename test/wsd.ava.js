@@ -3,6 +3,7 @@
 const test = require('ava')
 const wsd = require('../lib/wsd')
 const path = require('path')
+const {Buffer} = require('buffer')
 
 const desc = `
 title Authentication Sequence
@@ -22,7 +23,7 @@ test.before(async t => {
   const title = escape(path.basename(__filename))
   const { nockDone, context } = await nock.back(`${title}.json`)
   if (context.scopes.length === 0) {
-    // set the NOCK_BACK_MODE variable to "record" when needed
+    // Set the NOCK_BACK_MODE variable to "record" when needed
     if (process.env.NOCK_BACK_MODE !== 'record') {
       console.error(`WARNING: Nock recording needed for "${title}".
 Set NOCK_BACK_MODE=record`)
@@ -49,19 +50,22 @@ test('url buffer', async t => {
 test('bad style', async t => {
   await t.throwsAsync(
     () => wsd.diagramURL(desc, 'snoopy', 'png'),
-    'Unknown style: snoopy')
+    {message: 'Unknown style: snoopy'}
+  )
 })
 
 test('bad type', async t => {
   await t.throwsAsync(
     () => wsd.diagramURL(desc, 'default', 'snoopy'),
-    'Unknown format: snoopy')
+    {message: 'Unknown format: snoopy'}
+  )
 })
 
 test('pdf requires account', async t => {
   await t.throwsAsync(
     () => wsd.diagramURL('Alice\n', undefined, 'pdf'),
-    'HTTP Error: 402')
+    {message: 'HTTP Error: 402'}
+  )
 })
 
 test('diagram', async t => {
@@ -71,5 +75,8 @@ test('diagram', async t => {
 })
 
 test('invalid wsd', async t => {
-  await t.throwsAsync(() => wsd.diagramURL('Alice->'), 'Line 1: Syntax error.')
+  await t.throwsAsync(
+    () => wsd.diagramURL('Alice->'),
+    {message: 'Line 1: Syntax error.'}
+  )
 })

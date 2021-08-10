@@ -21,9 +21,7 @@ Bob->Alice: Authentication Response
 const files = ['1.wsd', '2.wsd']
 
 test.before(async t => {
-  t.context = await tmp.dir({
-    keep: false
-  })
+  t.context = await tmp.dir({ keep: false })
   t.context.files = []
   for (const f of files) {
     const fn = path.join(t.context.path, f)
@@ -57,7 +55,7 @@ test('all', async t => {
 test('read', async t => {
   const streams = await FileStream.createAll([t.context.path])
   const bufs = await Promise.all(streams.map(s => s.read()))
-  bufs.map(b => {
+  bufs.forEach(b => {
     const s = b.toString('utf8')
     t.is(s, desc)
   })

@@ -3,7 +3,7 @@ Call the WebSequenceDiagram.com API.
 ## Command Line
 
     wsd_get [options] [input file...]
-		
+
     Generate a diagram with websequencediagrams.com
 
     Options:
@@ -18,23 +18,30 @@ Call the WebSequenceDiagram.com API.
 
 Example:
 
-    var wsd = require('websequencediagrams');
-    var fs = require('fs');
-    wsd.diagram("Alice->Bob: message", "modern-blue", "png", function(er, buf, typ) {
-    	if (er) {
-    		console.error(er);    		
-    	} else {
-    		console.log("Received MIME type:", typ);
-    		fs.writeFile("my.png", buf);
-    	}
-    });
+```js
+const wsd = require('websequencediagrams')
+const fs = require('fs')
 
-### .diagram(text, style, output_type, callback)
-Takes the text to turn into a diagram, the style name, the output type, and a callback.
+;(async() => {
+  const [buf, typ] = await wsd.diagram('Alice->Bob: message', 'modern-blue', 'png')
+  console.log('Received MIME type:', typ)
+  fs.writeFile('my.png', buf)
+})()
+```
+
+### .diagram(text, style, output_type)
+Takes the text to turn into a diagram, the style name, and the output type.
 
 Valid output types include "png", "svg", and "pdf".
 
-The callback takes an error, a Buffer, and a MIME type
+Returns a promise for an array containing a Buffer and a MIME type.
+
+### .diagramURL(text, style, output_type)
+Takes the text to turn into a diagram, the style name, and the output type.
+
+Valid output types include "png", "svg", and "pdf".
+
+Returns a promise for a string containing the URL where the diagram can be found.
 
 ### .styles
 .styles is an array of all of the currently-known style types.
