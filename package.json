@@ -13,6 +13,7 @@
     "lib": "lib"
   },
   "main": "lib/wsd",
+  "types": "types/wsd.d.ts",
   "engines": {
     "node": ">=12.19"
   },
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@cto.af/eslint-config": "^0.0.8",
+    "@types/node": "^16.4.13",
     "ava": "^3.15.0",
     "coveralls": "^3.1.1",
     "eslint": "^7.32.0",
