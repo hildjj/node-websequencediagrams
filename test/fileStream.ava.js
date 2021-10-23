@@ -21,7 +21,7 @@ Bob->Alice: Authentication Response
 const files = ['1.wsd', '2.wsd']
 
 test.before(async t => {
-  t.context = await tmp.dir({ keep: false })
+  t.context = await tmp.dir({keep: false})
   t.context.files = []
   for (const f of files) {
     const fn = path.join(t.context.path, f)

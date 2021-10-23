@@ -21,7 +21,7 @@ test.before(async t => {
     nock.back.setMode('lockdown')
   }
   const title = escape(path.basename(__filename))
-  const { nockDone, context } = await nock.back(`${title}.json`)
+  const {nockDone, context} = await nock.back(`${title}.json`)
   if (context.scopes.length === 0) {
     // Set the NOCK_BACK_MODE variable to "record" when needed
     if (process.env.NOCK_BACK_MODE !== 'record') {

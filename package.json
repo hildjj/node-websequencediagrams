@@ -28,28 +28,28 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "ava",
-    "lint": "eslint . --ext js --ext cjs --ext mjs --ext md bin/*",
+    "lint": "eslint . --ext js,cjs,mjs,md bin/*",
     "coverage": "nyc -r lcov npm test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "precoveralls": "npm run coverage",
     "release": "npm version patch && git push --follow-tags && npm publish"
   },
   "devDependencies": {
-    "@cto.af/eslint-config": "^0.0.8",
-    "@types/node": "^16.4.13",
+    "@cto.af/eslint-config": "^0.0.11",
+    "@types/node": "^16.11.4",
     "ava": "^3.15.0",
     "coveralls": "^3.1.1",
-    "eslint": "^7.32.0",
-    "eslint-plugin-jsdoc": "^36.0.6",
-    "eslint-plugin-markdown": "^2.2.0",
+    "eslint": "^8.1.0",
+    "eslint-plugin-jsdoc": "^37.0.0",
+    "eslint-plugin-markdown": "^2.2.1",
     "eslint-plugin-node": "^11.1.0",
-    "nock": "^13.1.1",
+    "nock": "^13.1.4",
     "nyc": "^15.1.0",
     "tmp-promise": "^3.0.2"
   },
   "dependencies": {
-    "node-fetch": "^2.6.1",
-    "yargs": "^17.1.0"
+    "node-fetch": "^2.6.5",
+    "yargs": "^17.2.1"
   },
   "contributors": [
     "Ed Crump <ed.crump@gmail.com> (https://github.com/icedawn)"
