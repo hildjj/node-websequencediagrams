@@ -56,4 +56,4 @@ Returns a promise for a string containing the URL where the diagram can be found
 This code is licensed under the [Apache Software License, 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 [![Tests](https://github.com/hildjj/node-websequencediagrams/actions/workflows/node.js.yml/badge.svg)](https://github.com/hildjj/node-websequencediagrams/actions/workflows/node.js.yml)
-[![Coverage Status](https://coveralls.io/repos/github/hildjj/node-websequencediagrams/badge.svg?branch=master)](https://coveralls.io/github/hildjj/node-websequencediagrams?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/hildjj/node-websequencediagrams/badge.svg?branch=main)](https://coveralls.io/github/hildjj/node-websequencediagrams?branch=main)
