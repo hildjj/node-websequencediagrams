@@ -52,6 +52,7 @@
     "yargs": "^17.2.1"
   },
   "contributors": [
-    "Ed Crump <ed.crump@gmail.com> (https://github.com/icedawn)"
+    "Ed Crump <ed.crump@gmail.com> (https://github.com/icedawn)",
+    "Michael Callaghan <michael@walkingriver.com> (https://walkingriver.com)"
   ]
 }

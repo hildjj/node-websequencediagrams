@@ -13,6 +13,9 @@ Call the WebSequenceDiagram.com API.
     -s, --style   Output style (one of: [default, earth, modern-blue, mscgen,
                   omegapple, qsd, rose, roundgreen, napkin, magazine, vs2010,
                   patent])
+    -r, --root    The base URL for the service, which defaults to
+                  "http://www.websequencediagrams.com".  It can be modified
+                  to suit your needs, if you have a private installation.
     -k, --key     WebSequenceDiagrams API key.  Key can also be specified with
                   the WSD_APIKEY environment variable.  Requires a premium
                   account.  See https://www.websequencediagrams.com/order.html

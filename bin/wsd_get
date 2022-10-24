@@ -9,7 +9,7 @@ const fs = require('fs')
 const util = require('util')
 const writeFile = util.promisify(fs.writeFile)
 
-const {argv} = yargs
+const { argv } = yargs
   .usage('$0 [files...]', 'Generate a diagram with websequencediagrams.com')
   .env('WSD')
   .options({
@@ -29,6 +29,12 @@ const {argv} = yargs
       desc: 'Output style',
       choices: wsd.styles,
       default: 'default',
+    },
+    root: {
+      alias: 'r',
+      desc: 'WebSequenceDiagrams root URL',
+      type: 'string',
+      default: 'https://websequencediagrams.com',
     },
     key: {
       alias: 'k',
@@ -57,7 +63,7 @@ FileStream.createAll(files)
   .then(async streams => {
     for (const s of streams) {
       const inp = await s.read()
-      const [buf, typ] = await wsd.diagram(inp, argv.s, argv.f, argv.k)
+      const [buf, typ] = await wsd.diagram(inp, argv.s, argv.f, argv.k, argv.r)
 
       let output = argv.o
       if (!output) {
