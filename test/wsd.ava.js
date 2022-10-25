@@ -25,6 +25,7 @@ test.before(async t => {
   if (context.scopes.length === 0) {
     // Set the NOCK_BACK_MODE variable to "record" when needed
     if (process.env.NOCK_BACK_MODE !== 'record') {
+      // eslint-disable-next-line no-console
       console.error(`WARNING: Nock recording needed for "${title}".
 Set NOCK_BACK_MODE=record`)
     }

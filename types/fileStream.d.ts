@@ -1,4 +1,5 @@
 /// <reference types="node" />
+/// <reference types="node" />
 export = FileStream;
 /**
  * Promisified stream for a file.  Can be replaced with fs.promises one day.
