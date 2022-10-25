@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable node/shebang */
 'use strict'
 
 const yargs = require('yargs')
@@ -9,7 +8,7 @@ const fs = require('fs')
 const util = require('util')
 const writeFile = util.promisify(fs.writeFile)
 
-const { argv } = yargs
+const {argv} = yargs
   .usage('$0 [files...]', 'Generate a diagram with websequencediagrams.com')
   .env('WSD')
   .options({

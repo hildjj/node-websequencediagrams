@@ -1,8 +1,12 @@
 {
-  "author": "Joe Hildebrand <joe-github@cursive.net>",
   "name": "websequencediagrams",
   "description": "Interface to websequencediagrams.com",
   "version": "2.0.1",
+  "author": "Joe Hildebrand <joe-github@cursive.net>",
+  "contributors": [
+    "Ed Crump <ed.crump@gmail.com> (https://github.com/icedawn)",
+    "Michael Callaghan <michael@walkingriver.com> (https://walkingriver.com)"
+  ],
   "homepage": "https://github.com/hildjj/node-websequencediagrams",
   "repository": {
     "type": "git",
@@ -14,9 +18,6 @@
   },
   "main": "lib/wsd",
   "types": "types/wsd.d.ts",
-  "engines": {
-    "node": ">=12.19"
-  },
   "keywords": [
     "uml",
     "sequence diagram",
@@ -35,24 +36,23 @@
     "release": "npm version patch && git push --follow-tags && npm publish"
   },
   "devDependencies": {
-    "@cto.af/eslint-config": "^0.0.11",
-    "@types/node": "^16.11.4",
-    "ava": "^4.0.0-alpha.2",
+    "@cto.af/eslint-config": "^0.1.7",
+    "@types/node": "^18.11.5",
+    "ava": "^5.0.1",
     "coveralls": "^3.1.1",
-    "eslint": "^8.1.0",
-    "eslint-plugin-jsdoc": "^37.0.0",
-    "eslint-plugin-markdown": "^2.2.1",
+    "eslint": "^8.26.0",
+    "eslint-plugin-jsdoc": "^39.3.24",
+    "eslint-plugin-markdown": "^3.0.0",
     "eslint-plugin-node": "^11.1.0",
-    "nock": "^13.1.4",
+    "nock": "^13.2.9",
     "nyc": "^15.1.0",
-    "tmp-promise": "^3.0.2"
+    "tmp-promise": "^3.0.3"
   },
   "dependencies": {
     "node-fetch": "^2.6.5",
-    "yargs": "^17.2.1"
+    "yargs": "^17.6.0"
   },
-  "contributors": [
-    "Ed Crump <ed.crump@gmail.com> (https://github.com/icedawn)",
-    "Michael Callaghan <michael@walkingriver.com> (https://walkingriver.com)"
-  ]
+  "engines": {
+    "node": ">=14"
+  }
 }

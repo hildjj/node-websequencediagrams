@@ -6,4 +6,12 @@ module.exports = {
   ignorePatterns: [
     'node_modules/',
   ],
+  overrides: [
+    {
+      files: ['*.md/*.js', 'bin/*'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
+  ],
 }
