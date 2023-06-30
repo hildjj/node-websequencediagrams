@@ -30,19 +30,19 @@
   "scripts": {
     "test": "ava",
     "lint": "eslint . --ext js,cjs,mjs,md bin/*",
-    "coverage": "nyc -r lcov npm test",
+    "coverage": "c8 -r lcov npm test",
     "release": "npm version patch && git push --follow-tags && npm publish"
   },
   "devDependencies": {
     "@cto.af/eslint-config": "^2.0.3",
     "@types/node": "^20.3.2",
     "ava": "^5.3.1",
+    "c8": "8.0.0",
     "eslint": "^8.43.0",
     "eslint-plugin-jsdoc": "^46.4.2",
     "eslint-plugin-markdown": "^3.0.0",
     "eslint-plugin-node": "^11.1.0",
     "nock": "^13.3.1",
-    "nyc": "^15.1.0",
     "tmp-promise": "^3.0.3"
   },
   "dependencies": {
