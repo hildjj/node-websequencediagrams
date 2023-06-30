@@ -46,7 +46,7 @@
     "tmp-promise": "^3.0.3"
   },
   "dependencies": {
-    "node-fetch": "^2.6.5",
+    "node-fetch": "2",
     "yargs": "^17.7.2"
   },
   "pnpm": {
