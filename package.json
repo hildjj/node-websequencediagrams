@@ -1,7 +1,7 @@
 {
   "name": "websequencediagrams",
   "description": "Interface to websequencediagrams.com",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "author": "Joe Hildebrand <joe-github@cursive.net>",
   "contributors": [
     "Ed Crump <ed.crump@gmail.com> (https://github.com/icedawn)",
