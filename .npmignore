@@ -12,3 +12,7 @@ pnpm-lock.yaml
 test/
 tsconfig.json
 .ncurc.js
+tsconfig.json
+.c8rc
+.ncurc
+eslint.config.mjs

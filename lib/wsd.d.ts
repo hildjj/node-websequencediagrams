@@ -1,4 +1,3 @@
-/// <reference types="node" />
 export = WSD;
 /**
  * API for WebSequenceDiagrams.
@@ -18,7 +17,7 @@ declare class WSD {
      *   formats include: 'png', 'svg', or 'pdf'.  'pdf' requires a paid
      *   account.
      * @param {string} [apikey] API key for non-free usage.
-     * @param {string} [root='http://www.websequencediagrams.com'] Root URL for
+     * @param {string} [root='https://www.websequencediagrams.com'] Root URL for
      *   the service.
      * @returns {Promise<string>} The URL for the diagram.
      */
@@ -36,10 +35,11 @@ declare class WSD {
      *   account.
      * @param {string} [apikey] API key for non-free usage.
      * @param {string} [root] Root URL for the service.
-     * @returns {Promise<Array>} Array with the contents of the diagram as the
-     *   first item and the MIME type of the response as the second item.
+     * @returns {Promise<[Buffer, string]>} Array with the contents of the
+     *   diagram as the first item and the MIME type of the response as the
+     *   second item.
      */
-    static diagram(description: string, style?: string, format?: string, apikey?: string, root?: string): Promise<any[]>;
+    static diagram(description: string, style?: string, format?: string, apikey?: string, root?: string): Promise<[Buffer, string]>;
 }
 declare namespace WSD {
     export { styles };

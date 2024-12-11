@@ -17,7 +17,6 @@
     "lib": "lib"
   },
   "main": "lib/wsd",
-  "types": "types/wsd.d.ts",
   "keywords": [
     "uml",
     "sequence diagram",
@@ -44,7 +43,8 @@
     "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-node": "^11.1.0",
     "nock": "14.0.0-beta.19",
-    "tmp-promise": "^3.0.3"
+    "tmp-promise": "^3.0.3",
+    "typescript": "5.7.2"
   },
   "dependencies": {
     "yargs": "^17.7.2"

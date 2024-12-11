@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="node" />
 export = FileStream;
 /**
  * Promisified stream for a file.  Can be replaced with fs.promises one day.
@@ -30,5 +28,5 @@ declare class FileStream {
      */
     read(): Promise<Buffer>;
 }
-import fs = require("fs");
+import fs = require("node:fs");
 import { Buffer } from "buffer";
