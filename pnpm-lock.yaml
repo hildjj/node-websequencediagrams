@@ -46,6 +46,9 @@ importers:
       tmp-promise:
         specifier: ^3.0.3
         version: 3.0.3
+      typescript:
+        specifier: 5.7.2
+        version: 5.7.2
 
 packages:
 

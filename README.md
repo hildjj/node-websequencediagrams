@@ -53,7 +53,7 @@ Returns a promise for a string containing the URL where the diagram can be found
 .styles is an array of all of the currently-known style types.
 
 ### .root
-.root is the URL for the service, which defaults to "http://www.websequencediagrams.com".  It can be modified to suit your needs.
+.root is the URL for the service, which defaults to "https://www.websequencediagrams.com".  It can be modified to suit your needs.
 
 ### License
 This code is licensed under the [Apache Software License, 2.0](http://www.apache.org/licenses/LICENSE-2.0)
