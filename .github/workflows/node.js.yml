@@ -3,8 +3,7 @@ name: Tests
 
 on:
   push:
-    branches:
-      - 'main'
+    branches: [main]
   pull_request:
     branches: [main]
 
@@ -13,39 +12,24 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16, 18, 20]
+        node-version: [18, 20, 22, 23]
         platform: [ubuntu-latest]
 
     runs-on: ${{ matrix.platform }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7.14.0
-          run_install: true
+      - run: corepack enable
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
       - name: Test ${{ matrix.node-version }}
         run: npm run coverage
-      - name: Coveralls Parallel
-        uses: coverallsapp/github-action@master
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
         with:
-          github-token: ${{ secrets.github_token }}
-          flag-name: node-${{ matrix.node-version }}
-          parallel: true
-  finish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.github_token }}
-          parallel-finished: true
+          token: ${{ secrets.CODECOV_TOKEN }}
