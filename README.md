@@ -25,14 +25,14 @@ Call the WebSequenceDiagram.com API.
 Example:
 
 ```js
-const wsd = require('websequencediagrams')
-const fs = require('fs')
+const wsd = require('websequencediagrams');
+const fs = require('node:fs');
 
-;(async() => {
-  const [buf, typ] = await wsd.diagram('Alice->Bob: message', 'modern-blue', 'png')
-  console.log('Received MIME type:', typ)
-  fs.writeFile('my.png', buf)
-})()
+(async() => {
+  const [buf, typ] = await wsd.diagram('Alice->Bob: message', 'modern-blue', 'png');
+  console.log('Received MIME type:', typ);
+  fs.writeFile('my.png', buf);
+})();
 ```
 
 ### .diagram(text, style, output_type)

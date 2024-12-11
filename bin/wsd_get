@@ -33,7 +33,7 @@ const {argv} = yargs
       alias: 'r',
       desc: 'WebSequenceDiagrams root URL',
       type: 'string',
-      default: 'https://websequencediagrams.com',
+      default: 'https://www.websequencediagrams.com',
     },
     key: {
       alias: 'k',

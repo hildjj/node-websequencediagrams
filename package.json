@@ -29,37 +29,38 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "ava",
-    "lint": "eslint . --ext js,cjs,mjs,md bin/*",
-    "coverage": "c8 -r lcov npm test",
+    "lint": "eslint .",
+    "coverage": "c8 npm test",
+    "nock": "rm -f test/fixtures/wsd.ava.js.json && NOCK_BACK_MODE=record npx ava --serial test/wsd.ava.js",
     "release": "npm version patch && git push --follow-tags && npm publish"
   },
   "devDependencies": {
-    "@cto.af/eslint-config": "^2.0.3",
-    "@types/node": "^20.3.2",
-    "ava": "^5.3.1",
-    "c8": "8.0.0",
-    "eslint": "^8.43.0",
-    "eslint-plugin-jsdoc": "^46.4.2",
-    "eslint-plugin-markdown": "^3.0.0",
+    "@cto.af/eslint-config": "^5.1.1",
+    "@types/node": "^22.10.2",
+    "ava": "^6.2.0",
+    "c8": "10.1.3",
+    "eslint": "^9.16.0",
+    "eslint-plugin-jsdoc": "^50.6.1",
+    "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-node": "^11.1.0",
-    "nock": "^13.3.1",
+    "nock": "14.0.0-beta.19",
     "tmp-promise": "^3.0.3"
   },
   "dependencies": {
-    "node-fetch": "2",
     "yargs": "^17.7.2"
   },
   "pnpm": {
     "overrides": {
-      "semver": ">=7.5.3",
-      "word-wrap": "npm:@aashutoshrathi/word-wrap"
+      "micromatch": "^4.0.8",
+      "cross-spawn": "^7.0.6"
     }
   },
   "overrides": {
-    "semver": ">=7.5.3",
-    "word-wrap": "npm:@aashutoshrathi/word-wrap"
+    "micromatch": "^4.0.8",
+    "cross-spawn": "^7.0.6"
   },
+  "packageManager": "pnpm@9.15.0",
   "engines": {
-    "node": ">=16"
+    "node": ">=18.8"
   }
 }
