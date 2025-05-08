@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node-version: [18, 20, 22, 23]
+        node-version: [20, 22, 23]
         platform: [ubuntu-latest]
 
     runs-on: ${{ matrix.platform }}
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-      - run: corepack enable
+      - uses: pnpm/action-setup@v4
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
