@@ -10,7 +10,7 @@
   "homepage": "https://github.com/hildjj/node-websequencediagrams",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hildjj/node-websequencediagrams"
+    "url": "git://github.com/hildjj/node-websequencediagrams.git"
   },
   "directories": {
     "bin": "bin",
