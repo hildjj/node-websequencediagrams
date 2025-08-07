@@ -28,7 +28,7 @@ Example:
 const wsd = require('websequencediagrams');
 const fs = require('node:fs');
 
-(async() => {
+(async () => {
   const [buf, typ] = await wsd.diagram('Alice->Bob: message', 'modern-blue', 'png');
   console.log('Received MIME type:', typ);
   fs.writeFile('my.png', buf);
