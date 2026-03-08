@@ -16,6 +16,10 @@
     "bin": "bin",
     "lib": "lib"
   },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "main": "lib/wsd",
   "keywords": [
     "uml",
