@@ -35,27 +35,24 @@
     "lint": "eslint .",
     "coverage": "c8 npm test",
     "nock": "rm -f test/fixtures/wsd.test.js.json && NOCK_BACK_MODE=record npx ava --serial test/wsd.test.js",
-    "release": "npm version patch && git push --follow-tags && npm publish"
+    "build": "npm run lint && npm run coverage"
   },
   "devDependencies": {
     "@cto.af/eslint-config": "^6.2.5",
-    "@eslint/markdown": "7.5.1",
+    "@eslint/markdown": "^7.5.1",
     "@stylistic/eslint-plugin": "^5.10.0",
-    "@types/node": "^25.3.5",
-    "eslint": "9.39.2",
-    "eslint-plugin-jsdoc": "^62.7.1",
-    "eslint-plugin-json": "^4.0.1",
-    "eslint-plugin-markdown": "^5.1.0",
-    "eslint-plugin-redos": "^4.5.0",
-    "nock": "14.0.11",
-    "superc8": "12.2.4",
+    "@types/node": "^25.5.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-jsdoc": "^62.8.0",
+    "nock": "^14.0.11",
+    "superc8": "~12.3.1",
     "tmp-promise": "^3.0.3",
-    "typescript": "5.9.3"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.31.0",
+  "packageManager": "pnpm@10.32.1",
   "engines": {
     "node": ">=20"
   }
